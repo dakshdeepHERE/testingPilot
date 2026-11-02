@@ -25,10 +25,25 @@ A plant is **Thirsty** when the number of days since it was last watered is the 
 
 ## Project layout
 
-- `src/index.html` holds the page title.
-- `src/app/app.html` holds the page heading and the plant cards.
-- `src/app/plants.ts` holds the list of plants.
-- `.github/workflows/` holds the automated checks.
+```
+src/
+├── index.html                          the page title shown in the browser tab
+├── styles.css                          global styles, made from the files in styles/
+├── styles/                             fonts and base styles
+└── app/
+    ├── app.*                           the app shell: intro first, then the plants
+    ├── features/
+    │   ├── landing/                    the "Water Us" intro page
+    │   └── plants/
+    │       ├── models/                 what a plant is
+    │       ├── data/plants.ts          the list of plants
+    │       ├── rules/plant-care.ts     when a plant is thirsty, and how watered it is
+    │       ├── state/plant.store.ts    the plants, and what happens when you water one
+    │       └── components/             the plant list and the plant card
+    └── shared/ui/                      the backdrop, sun, and falling rain
+public/images/                          the background artwork
+.github/workflows/                      the automated checks
+```
 
 ## Contributing
 

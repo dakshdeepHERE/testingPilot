@@ -1,6 +1,2 @@
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
-  background: #f3f8f4;
-  color: #1c2a22;
-}
+@import './styles/fonts.css';
+@import './styles/base.css';

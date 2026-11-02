@@ -1,0 +1,10 @@
+<section class="grid" aria-label="Your plants">
+  @for (plant of store.plants(); track plant.id) {
+    <app-plant-card
+      [plant]="plant"
+      [watering]="store.wateringId() === plant.id"
+      [disabled]="store.isBusy()"
+      (water)="store.water(plant.id)"
+    />
+  }
+</section>

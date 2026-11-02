@@ -13,5 +13,5 @@ Every change starts with an issue and ends with a merged pull request.
 ## Style
 
 - Keep pull requests small and about one thing.
-- Match the existing plant entries in `src/app/plants.ts`.
+- Match the existing plant entries in `src/app/features/plants/data/plants.ts`.
 - Watering intervals must match the care guide in the README.

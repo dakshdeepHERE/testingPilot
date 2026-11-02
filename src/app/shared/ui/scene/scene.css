@@ -1,0 +1,40 @@
+:host {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.backdrop.drift {
+  animation: drift 18s ease-in-out infinite alternate;
+}
+
+.scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(5, 30, 22, 0.35), rgba(5, 30, 22, 0.6));
+}
+
+@keyframes drift {
+  from {
+    transform: scale(1.04) translateX(-8px);
+  }
+  to {
+    transform: scale(1.12) translateX(8px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .backdrop.drift {
+    animation: none;
+  }
+}

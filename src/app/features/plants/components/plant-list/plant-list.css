@@ -1,0 +1,11 @@
+/* Each card spans 7 rows and shares them with its neighbours (subgrid), so the name, text,
+   meter and button line up across cards even when one name wraps onto a second line. */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 300px));
+  justify-content: center;
+  column-gap: 24px;
+  row-gap: 0;
+  width: 100%;
+  max-width: 1040px;
+}
