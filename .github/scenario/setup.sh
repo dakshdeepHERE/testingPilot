@@ -57,6 +57,10 @@ render() {
 # Pushes a branch that makes one edit to the plants file, if the branch does not exist yet.
 make_branch() {
   local branch="$1" message="$2"
+  # An earlier run may have stopped after pushing the branch, so leave an existing one alone.
+  if git ls-remote --exit-code --heads origin "$branch" >/dev/null 2>&1; then
+    return 0
+  fi
   git checkout -q main
   git checkout -q -b "$branch"
   python3 - "$PLANTS" "$branch" "$ALOE_BRANCH" <<'PY'
@@ -101,9 +105,7 @@ ALOE_PR=$(pr_number "$ALOE_BRANCH")
 CACTUS_PR=$(pr_number "$CACTUS_BRANCH")
 
 if [ -z "$ALOE_PR" ]; then
-  if ! git ls-remote --exit-code --heads origin "$ALOE_BRANCH" >/dev/null 2>&1; then
-    make_branch "$ALOE_BRANCH" "Add Aloe Vera plant"
-  fi
+  make_branch "$ALOE_BRANCH" "Add Aloe Vera plant"
 fi
 if [ -z "$CACTUS_PR" ]; then
   make_branch "$CACTUS_BRANCH" "Fix cactus watering interval to match the care guide"
