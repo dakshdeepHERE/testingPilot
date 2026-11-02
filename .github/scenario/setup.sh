@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Builds the practice scenario in a learner's copy of the repository:
 #   - Issue "Rename the app to Plant Pals": the issue the learner completes
+#   - Issue "Add a tab icon": a second small issue the learner can pick up
 #   - Issue "Add an Aloe Vera plant", with an open pull request that closes it. The pull request
 #     has a merge conflict and a failing build, so the learner repairs it.
 #   - Issue "Cactus watering interval...", with a pull request that is already merged. It changed
@@ -10,6 +11,7 @@
 set -euo pipefail
 
 RENAME_TITLE='Rename the app to "Plant Pals"'
+FAVICON_TITLE='Add a tab icon for the app'
 ALOE_TITLE='Add an Aloe Vera plant'
 CACTUS_TITLE="Cactus watering interval doesn't match the care guide"
 ALOE_BRANCH="add-aloe-plant"
@@ -90,6 +92,7 @@ merge_pr() {
 
 # Issues first, so the learner's issue is Issue #1.
 RENAME_NUMBER=$(ensure_issue "$RENAME_TITLE" "$SCENARIO/issue-rename.md")
+ensure_issue "$FAVICON_TITLE" "$SCENARIO/issue-favicon.md" > /dev/null
 ALOE_NUMBER=$(ensure_issue "$ALOE_TITLE" "$SCENARIO/issue-aloe.md")
 CACTUS_NUMBER=$(ensure_issue "$CACTUS_TITLE" "$SCENARIO/issue-cactus.md")
 
