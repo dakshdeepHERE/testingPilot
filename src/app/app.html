@@ -1,0 +1,26 @@
+<main class="page">
+  <header>
+    <h1>Plants</h1>
+  </header>
+
+  <p class="status">
+    @if (thirstyCount() === 0) {
+      All your plants are happy.
+    } @else {
+      {{ thirstyCount() }} of {{ plants().length }} plants are thirsty.
+    }
+  </p>
+
+  <section class="grid">
+    @for (plant of plants(); track plant.id) {
+      <article class="card" [class.thirsty]="isThirsty(plant)">
+        <div class="emoji">{{ plant.emoji }}</div>
+        <h2>{{ plant.name }}</h2>
+        <p>Water every {{ plant.wateringEveryDays }} days</p>
+        <p>Last watered {{ plant.daysSinceWatered }} days ago</p>
+        <span class="badge">{{ isThirsty(plant) ? 'Thirsty' : 'Happy' }}</span>
+        <button type="button" (click)="water(plant)">Water now</button>
+      </article>
+    }
+  </section>
+</main>
