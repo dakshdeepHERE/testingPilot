@@ -1,0 +1,30 @@
+<article class="card" [class.thirsty]="thirsty()" [class.watering]="watering()">
+  @if (watering()) {
+    <div class="rain" aria-hidden="true">
+      @for (drop of drops; track drop) {
+        <i [style.--i]="drop"></i>
+      }
+    </div>
+  }
+  <div class="emoji">{{ plant().emoji }}</div>
+  <h2>{{ plant().name }}</h2>
+  <p>Water every {{ plant().wateringEveryDays }} days</p>
+  <p>Last watered {{ plant().daysSinceWatered }} days ago</p>
+  <div class="status-row">
+    <span class="badge">{{ thirsty() ? 'Thirsty' : 'Happy' }}</span>
+    <span class="level">{{ hydration() }}% watered</span>
+  </div>
+  <div
+    class="meter"
+    role="meter"
+    aria-label="Water level"
+    aria-valuemin="0"
+    aria-valuemax="100"
+    [attr.aria-valuenow]="hydration()"
+  >
+    <div class="fill" [style.width.%]="hydration()"></div>
+  </div>
+  <button type="button" [disabled]="disabled()" (click)="water.emit()">
+    {{ watering() ? 'Watering…' : 'Water now' }}
+  </button>
+</article>

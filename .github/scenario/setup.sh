@@ -7,8 +7,8 @@
 set -euo pipefail
 
 BRANCH="add-aloe-plant"
-ISSUE_TITLE='Rename the app to "Plant Pals" and add a tagline'
-PLANTS="src/app/plants.ts"
+ISSUE_TITLE='Rename the app to "Plant Pals"'
+PLANTS="src/app/features/plants/data/plants.ts"
 
 # True when main already has the cactus fix, which means the history step has run.
 main_has_fix() {

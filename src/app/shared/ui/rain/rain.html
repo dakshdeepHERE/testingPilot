@@ -1,0 +1,14 @@
+@for (drop of drops(); track drop.id) {
+  <span
+    class="drop"
+    [style.--x.%]="drop.x"
+    [style.--size.px]="drop.size"
+    [style.--alpha]="drop.alpha"
+    [style.--drift.px]="drop.drift"
+    [style.--dur.s]="drop.duration"
+    [style.--delay.s]="drop.delay"
+    (animationiteration)="respawn(drop)"
+  >
+    <i></i>
+  </span>
+}

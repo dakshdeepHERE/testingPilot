@@ -1,26 +1,26 @@
-import { Component, computed, signal } from '@angular/core';
-import { Plant } from './plant';
-import { PLANTS } from './plants';
+import { Component, signal } from '@angular/core';
+import { Landing } from './features/landing/landing';
+import { PlantList } from './features/plants/components/plant-list/plant-list';
+import { Scene } from './shared/ui/scene/scene';
+
+/** How long the intro takes to slide away, in milliseconds. */
+const LANDING_EXIT_MS = 700;
 
 @Component({
   selector: 'app-root',
+  imports: [Landing, PlantList, Scene],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
 export class App {
-  protected readonly plants = signal<Plant[]>(PLANTS);
+  protected readonly showLanding = signal(true);
+  protected readonly leaving = signal(false);
 
-  protected readonly thirstyCount = computed(
-    () => this.plants().filter((plant) => this.isThirsty(plant)).length,
-  );
-
-  protected isThirsty(plant: Plant): boolean {
-    return plant.daysSinceWatered >= plant.wateringEveryDays;
-  }
-
-  protected water(plant: Plant): void {
-    this.plants.update((list) =>
-      list.map((p) => (p.id === plant.id ? { ...p, daysSinceWatered: 0 } : p)),
-    );
+  protected enter(): void {
+    if (this.leaving()) {
+      return;
+    }
+    this.leaving.set(true);
+    setTimeout(() => this.showLanding.set(false), LANDING_EXIT_MS);
   }
 }

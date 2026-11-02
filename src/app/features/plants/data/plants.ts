@@ -1,4 +1,4 @@
-import { Plant } from './plant';
+import { Plant } from '../models/plant.model';
 
 export const PLANTS: Plant[] = [
   { id: 1, name: 'Spike the Cactus', emoji: '🌵', wateringEveryDays: 7, daysSinceWatered: 15 },
